@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A project with simple REST API.
 
-Things you may want to cover:
+* Ruby version used
+2.6.3
 
-* Ruby version
+* Rails version used
+6.0.0.rc2
 
-* System dependencies
+* System dependencies:
+PostgreSQL, ImageMagic
 
-* Configuration
+# Installation
 
-* Database creation
+Create .env file from sample by filling database connection parameters.
 
-* Database initialization
+Update dependencies:
+% bundle install
 
-* How to run the test suite
+Create, migrate and prefill (several countries plus several genres) database:
+% rake db:create
+% rake db:migrate
+% rake db:seed
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run application:
+rails server
