@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_06_112910) do
+ActiveRecord::Schema.define(version: 2019_08_06_121828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,34 @@ ActiveRecord::Schema.define(version: 2019_08_06_112910) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
+  create_table "countries_films", id: false, force: :cascade do |t|
+    t.bigint "country_id", null: false
+    t.bigint "film_id", null: false
+  end
+
+  create_table "films", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "title_localized", null: false
+    t.integer "year", null: false
+    t.integer "rating", default: 0, null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "films_genres", id: false, force: :cascade do |t|
+    t.bigint "film_id", null: false
+    t.bigint "genre_id", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
