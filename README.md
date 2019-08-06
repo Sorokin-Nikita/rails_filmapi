@@ -16,12 +16,16 @@ PostgreSQL, ImageMagic
 Create .env file from sample by filling database connection parameters.
 
 Update dependencies:
-> bundle install
+```
+bundle install
+```
 
 Create, migrate and prefill (several countries plus several genres) database:
-> rake db:create
-> rake db:migrate
-> rake db:seed
+```
+ rake db:create
+ rake db:migrate
+ rake db:seed
+```
 
 Run application:
 rails server
