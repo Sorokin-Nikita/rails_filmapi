@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_06_121828) do
+ActiveRecord::Schema.define(version: 2019_08_07_044052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2019_08_06_121828) do
   create_table "countries_films", id: false, force: :cascade do |t|
     t.bigint "country_id", null: false
     t.bigint "film_id", null: false
+    t.index ["country_id"], name: "index_countries_films_on_country_id"
+    t.index ["film_id"], name: "index_countries_films_on_film_id"
   end
 
   create_table "films", force: :cascade do |t|
@@ -53,11 +55,15 @@ ActiveRecord::Schema.define(version: 2019_08_06_121828) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["rating"], name: "index_films_on_rating"
+    t.index ["year"], name: "index_films_on_year"
   end
 
   create_table "films_genres", id: false, force: :cascade do |t|
     t.bigint "film_id", null: false
     t.bigint "genre_id", null: false
+    t.index ["film_id"], name: "index_films_genres_on_film_id"
+    t.index ["genre_id"], name: "index_films_genres_on_genre_id"
   end
 
   create_table "genres", force: :cascade do |t|
