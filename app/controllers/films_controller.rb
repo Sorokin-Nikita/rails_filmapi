@@ -12,7 +12,9 @@ class FilmsController < ApplicationController
   def create
     @film = Film.create(film_params)
 
-    if @film.invalid?
+    if @film.persisted?
+      render 'films/create', status: :created
+    else
       render json: { errors: @film.errors.messages }, status: :unprocessable_entity
     end
   end
