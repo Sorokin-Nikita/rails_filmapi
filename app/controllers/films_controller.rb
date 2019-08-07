@@ -3,9 +3,15 @@ class FilmsController < ApplicationController
 
   # GET /films
   def index
+    @page = params[:page] || 1
+    @per_page = params[:per_page] || 25
+
     @films = Film.filtered_by(filter_params)
                  .ordered_by(order_params)
                  .preload(:genres, :countries)
+                 .page(@page).per(@per_page)
+
+   @total_count =  @films.total_count
   end
 
   # POST /films
